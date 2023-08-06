@@ -1,0 +1,545 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Merriweather:wght@300&display=swap');
+
+
+* {
+    margin: 0; /*Removendo o preenchimento padrão*/
+    padding: 0; /*Removendo o preenchimento padrão*/
+    box-sizing: border-box;
+}
+
+body{
+  font-family: 'Lobster', cursive;
+  font-family: 'Merriweather', serif;
+  line-height: 1.6;
+  color: #333;
+  overflow-x: hidden;
+}
+
+body, .menu, .footer{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+   overflow-x: hidden;
+}
+
+
+.menu{
+  background-color: #23232e;    
+    color: #ffffff;
+    width: 100%;
+    height: 250px;                                      
+    margin: 0; /*Removendo o preenchimento padrão*/
+    padding: 0; /*Removendo o preenchimento padrão*/
+}
+
+.menu-background{
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /*para colocar a imagem atras dos demais elementos*/
+}
+
+.menu-items{
+    display: flex;
+    justify-content: end;
+    margin: 0; /*Removendo o preenchimento padrão*/
+    padding: 0; /*Removendo o preenchimento padrão*/
+}
+
+.menu-items a{
+    padding: 10px 20px; /*eixo x eixo y*/
+    text-decoration: none;
+    color: #ffff;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.menu-items.active a {
+    opacity: 1;
+}
+
+/*menu toggle*/
+.menu-toggle{
+    display: none; /*ocultar por padrao em telas maiores*/
+    cursor: pointer;
+    padding: 10px;
+    position: relative; /*Necessario para o posicionamento do icone X*/
+}
+
+.menu-toggle .bar{
+    width: 30px;
+    height: 3px;
+    background-color: #ffff;
+    margin: 6px 0;
+    transition: transform 0.9s ease; /*Adicionado transição de transformação */
+}
+
+.menu-link{
+  display: flex;
+  justify-content: space-around;
+    text-decoration: none;
+    color: #ffff;
+    font-weight: bold;
+}
+
+a.menu-link {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    max-width: 100px;
+}
+
+h3{
+    display: flex;
+    justify-content: center;
+    padding-top: 140px;
+}
+
+/*Titulo do carousel*/
+.p-edit{
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+}
+
+/*Sorteios*/
+
+.image-left, .text-right{
+  padding: 50px;
+}
+
+/* Centralizar o conteúdo de .quemsomosContainer e .sorteioContainer na versão desktop */
+.quemsomosContainer, .sorteioContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Centralizar o conteúdo de .excursionistasContainer .excur-left e .text-right na versão desktop */
+.excursionistasContainer .excur-left, .excursionistasContainer .text-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*Efeito do hover para a imagem*/
+.img-container{
+overflow: hidden;
+position: relative;
+}
+
+.img-container img{
+transition: transform 0.3s ease;
+}
+
+.img-container:hover img{
+  transform: scale(1.05);
+}
+
+.img-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Defina a cor da borda opaca aqui */
+  opacity: 0; /* Começa com opacidade 0 para não aparecer inicialmente */
+  transition: opacity 0.3s ease; /* Adicione transição suave para o efeito fade */
+}
+
+.img-container:hover .img-overly {
+  opacity: 0.7; /*Ao passar o mouse, mostra a borda com transparencia*/
+}
+
+
+/* Estilo para o menu hamburguer em dispositivos menores */
+@media screen and (max-width: 768px) {
+    .menu{
+      color: #fff;
+      padding: 10px;
+   
+    }
+
+    .menu-items {
+      display: none; 
+      flex-direction: column; /* Mostrando os itens um abaixo do outro. */
+      max-height: 0; /* Definir altura máxima como 0 */
+      overflow: hidden; /* Ocultar o conteúdo que ultrapassar a altura máxima */
+      transition: max-height 0.3s ease; /* Transição de 0.3s na propriedade max-height */
+    }
+  
+    .menu-items.active {
+      display: flex; 
+      max-height: 180px; /* Altura máxima suficientemente grande para exibir os itens */
+      transition: max-height 1s ease; /* Transição de 1s na propriedade max-height */
+      flex-direction: column;
+  
+    }
+  
+    .menu-toggle {
+      display: block; /* Exibir em telas menores */
+      position: relative;
+      padding: 10px;
+      cursor: pointer;
+    }
+  
+    /* Estilo para transformar em X */
+    .menu-toggle.active .bar:nth-child(1) {
+      transform: rotate(-45deg) translate(-6px, 6px);
+    }
+  
+    .menu-toggle.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+  
+    .menu-toggle.active .bar:nth-child(3) {
+      transform: rotate(45deg) translate(-6px, -6px);
+    }
+
+   
+  }
+
+  /*Estilos para imagens em dispositivos menores*/
+  @media screen and(max-width: 768px){
+    .carousel img,
+     .sorteioContainer img, 
+     .quemsomosContainer img,
+    .excursionistasContainer img {
+     width: 100%;
+     height: auto;
+    }
+    
+  }
+
+
+/* Estilos para o footer em dispositivos menores */
+@media screen and (max-width: 768px) {
+  .footer {
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap; /* Quebrar os elementos para a próxima linha quando necessário */
+    overflow: hidden; /* Impede que elementos ultrapassem a largura da tela */
+    flex-direction: column;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+
+  .footer-left, .footer-center, .footer-right {
+    flex-basis: 100%; /* Ocupar toda a largura disponível em telas menores */
+    margin: 10px; /* Adicionar margem entre os elementos do footer */
+  }
+
+  .footer h4 {
+    font-size: 20px; /* Reduzir o tamanho da fonte em telas menores */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /*banners style*/
+
+  .sorteioContainer{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-right {
+    width: 92vw;
+    text-align: center
+  }
+
+  .text-right strong{
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .excursionistas-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .excursionistas-list li{
+    margin-bottom: 10px;
+  }
+
+  .outro-conteudo {
+    margin-top: 50px;
+    color: #fff;
+  }
+
+  .img{ 
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    width: 92vw;
+  }
+
+  .img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    width: 92vw;
+  }
+
+
+  /*carousel styles*/
+  .carousel{
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  }
+
+  .slider{
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease;
+  }
+  
+  .slider img{
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+  }
+
+  .prev-button, .next-button{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .prev-button {
+    left: 10px;
+  }
+  
+  .next-button {
+    right: 10px;
+  }
+  
+  /*Excursionistas edit*/
+
+  .excursionistasContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .excur-left{
+    display: flex;
+    width: auto;
+    justify-content: center;
+  }
+
+  /*Quem somos edit*/
+  .quemsomosContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-link{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .copy{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+ 
+  }
+
+  /*Versão Desktop*/
+
+  /*image-edit*/
+  .img{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 200px;
+    background-image: url('https://live.staticflickr.com/65535/53051504003_c039c7682b.jpg');
+    background-size: cover;
+    background-position: center;
+    }
+/*image-edit fim*/
+
+  .rodape-edit {
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /*letras que estão dentro da imagem*/
+  .lettring{
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .lettring h5{
+    font-size: 30px;
+    padding-left: 10px;
+  }
+   /*letras que estão dentro da imagem fim*/
+
+   /*carousel inicio*/
+   .carousel{
+    position: relative;
+    width: 320px;
+    margin: 0 auto;
+    overflow: hidden;
+   }
+
+   .slider{
+    display: flex;
+    transition: transform 0.5s ease;
+    width: fit-content;
+    margin: auto;
+   }
+
+   .slider img{
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+   }
+
+   .prev-button, .next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50);
+    padding: 10px;
+    background-color: #333;
+    color: #ffff;
+    border: none;
+    cursor: pointer;
+   }
+
+   .prev-button{
+    left: 10px;
+   }
+
+   .next-button{
+    right: 10px;
+   }
+
+   .prev-button:hover, .next-button:hover{
+    opacity: 0.7;
+   }
+   
+      /*carousel fim*/
+
+  .footer-left, .foorter-right{
+    flex-basis: 30%; /*verificar o que faz*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-item{
+    flex-basis: 30%;
+    margin-bottom: 20px;
+  }
+
+  .footer-center{
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .footer-center img{
+    margin: 0 10px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li{
+    margin-bottom: 10px;
+  }
+
+  a{
+    color: #333;
+    text-decoration: none;
+  }
+
+  a:hover{
+    text-decoration: underline;
+  }
+
+  h3{
+    color: #ffffff;
+  }
+
+  .container-flex{
+    display: flex;
+   overflow-x: x;
+   justify-content: center;
+  }
+
+  .container-flex p {
+    color: #080707;
+  }
+  
+/* Posicionamento do footer */
+.footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #23232e;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.footer h4 {
+  color: #fff;
+}
+
+.footer a {
+  color: #fff;
+}
+
+.footer-left ul, .footer-center ul, .footer-right ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-left li, .footer-center li, .footer-right li {
+  margin-bottom: 10px;
+}
+
+.footer-left, .footer-center, .footer-right {
+  flex-basis: 30%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  line-height: 2;
+}
+
+.footer-left{
+  margin-bottom: 80px;
+}
+
+.footer-right{
+  margin-bottom: 20px;
+}
+
+
+
+
+
